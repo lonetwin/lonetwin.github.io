@@ -30,7 +30,7 @@ website = 'http://lonetwin.github.io/blog/html/'
 # **************************************************************
 
 # Add your Disqus shortname to enable comments powered by Disqus
-disqus_shortname = 'lonetwin'
+disqus_shortname = 'lonetwin-gh'
 
 # Change your favicon (new favicon goes in _static directory)
 html_favicon = 'tinkerer.ico'
