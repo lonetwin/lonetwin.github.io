@@ -11,7 +11,7 @@ import tinkerer.paths
 project = "lonetwin's garage"
 
 # Change this to the tagline of your blog
-tagline = "A uniquely banal blog in an exceptionally ordinary manner"
+tagline = "Thoughts on tech that lonetwin finds interesting, amusing or annoying"
 
 # Change this to the description of your blog
 description = "Thoughts on tech that lonetwin finds interesting, amusing or annoying"
