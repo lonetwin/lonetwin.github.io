@@ -4,21 +4,21 @@ Interview Cake
 A while ago I discovered `Interview Cake`_ via a `Hacker News`_ post and I'm so
 glad to have found it.
 
-I'd recommend it to anyone who feels like they are at a disadvantage as
+I recommend it to anyone who feels like they are at a disadvantage as
 programmers because somehow, along the way, they skipped having to learn
 *Algorithms and Data Stuctures* and now the subject just seems way too
 intimidating.
 
 I felt that way for the longest time and I've always regretted not having a
-*^formal computer science^* background and have tried numerous times to
+*^formal computer science^* background. I have tried numerous times to
 formally study *Algorithrms and Data Stuctures* from books, videos and other
-online resources. I often felt handicapped as a programmer for not having
-learned them in a proper structured manner.
+online resources but I often felt handicapped as a programmer for not ever
+completing the books or videos lectures ...etc
 
 And although, over time I did pick up enough of comp-sci'y knowledge to reason
-about code and speak intelligently (or sometimes even fake convincingly) about
-design, I've always tended to linger on the shores of the subject, testily
-getting my feet wet, never diving deep.
+about code and speak intelligently about design, (or sometimes even fake
+convincingly about those ;-) ), I've always tended to linger on the shores of
+the subject, testily getting my feet wet, never diving deep.
 
 This was primarily because invariably all books that I came across started off
 being way too technical without a whole lot of practical or motivating pretext
@@ -48,6 +48,7 @@ feel confident that I'll be a better programmer due to this.
 
 
 .. _Interview Cake: https://www.interviewcake.com/
+.. _Hacker News: https://news.ycombinator.com/item?id=7477095
 .. _codility: https://codility.com/
 .. _project euler: https://projecteuler.net/
 
