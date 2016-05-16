@@ -15,7 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="description" content="Thoughts on tech that lonetwin finds interesting, amusing or annoying">
         <meta name="viewport" content="width=device-width">
-        <title>Learning complex things by solving simple problems &mdash; lonetwin&#39;s garage</title>
+        <title>Auto-install missing python modules &mdash; lonetwin&#39;s garage</title>
             <link rel="stylesheet" href="../../../_static/normalize.css" type="text/css">
             <link rel="stylesheet" href="../../../_static/sphinx.css" type="text/css">
             <link rel="stylesheet" href="../../../_static/main.css" type="text/css">
@@ -28,7 +28,7 @@
         <script>window.jQuery || document.write('<script src="../../../_static/vendor/jquery-1.8.2.min.js"><\/script>')</script>
         <script src="../../../_static/plugins.js"></script>
         <script src="../../../_static/main.js"></script>
-        <link rel="next" title="Hello, World" href="../../08/05/hello_world.html" /><link rel="prev" title="Interview Cake" href="../../12/09/interview_cake.html" /><link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.html" /><script type="text/javascript">
+        <link rel="next" title="Interview Cake" href="../../../2014/12/09/interview_cake.html" /><link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.html" /><script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
         VERSION:     '1.4.2',
@@ -62,41 +62,26 @@
                 </li>
               </ul>
           </nav><div class="main-container" role="main"><div class="main wrapper clearfix"><article><div class="timestamp postmeta">
-            <span>October 23, 2014</span>
+            <span>May 16, 2016</span>
         </div>
-    <div class="section" id="learning-complex-things-by-solving-simple-problems">
-<h1>Learning complex things by solving simple problems</h1>
-<p>Keeping things organized is not one of my strengths and this is evident by
-looking at the filesystems on any of the myriad storage devices in my
-possession.</p>
-<p>The folders and files struggle to maintain a sense of perceivable order and
-intent for being where they are and named as they have been. Beyond the lack of
-structure and confusing names though, the thing that bothers me the most is the
-fact that I seem to over time, collect multiple copied of these blasted
-byte-collections for no good reason.</p>
-<p>I&#8217;m a byte hoarder and worse still, I can&#8217;t seem to organize my hoard.</p>
-<p>Although, I do try. Sometimes. Like for instance when I wrote <a class="reference external" href="https://github.com/lonetwin/finddup">finddup</a> <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
-<p>Now, although <cite>finddup</cite> started off as being just a tool to allow me to regain
-some space (and order, in the bit-chaos) on my harddisk, it has turned out to
-be a wonderful journey of discovery into the concepts of <a class="reference external" href="http://en.wikipedia.org/wiki/Locality-sensitive_hashing">Locality-sensitive hashing</a>
-and <a class="reference external" href="http://en.wikipedia.org/wiki/Soundex">Soundex</a> algorithms. All this because I was dissatisfied with the way I
-implemented the <span class="docutils literal"><span class="pre">fuzzy</span></span> option.</p>
-<p>I won&#8217;t attempt to explain these concepts here in this post, since firstly, I
-am not sure I understand them well enough yet and secondly since there already
-are so many good resources that explain these. However, I do hope to update the
-<span class="docutils literal"><span class="pre">fuzzy</span></span> matching option of <cite>finddup</cite> to make use of LSH. That way, I can
-implement it and in the process understand it as well.</p>
-<p>What I do what to emphasize here tho&#8217; is this &#8211; trying to solve simple
-problems can teach you a great many new things if you challenge yourself to
-find better or even different ways to solve those problems.</p>
-<p>Remember that future me !</p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Re-wrote actually, not sure how many times I&#8217;ve written the simple
-filename matching and md5sum matching versions of this.</td></tr>
-</tbody>
-</table>
+    <div class="section" id="auto-install-missing-python-modules">
+<h1>Auto-install missing python modules</h1>
+<p>I just learned about a neat little python feature introduced in python 3.3 that
+lets you hook into python&#8217;s default <span class="docutils literal"><span class="pre">import</span></span> machinery. First a demo:</p>
+<p><script type="text/javascript" src="https://asciinema.org/a/03nct06ebqxcd5tpz76m0q6pn.js" id="asciicast-03nct06ebqxcd5tpz76m0q6pn" async></script></p>
+<p>Ok, so how&#8217;s that done ? Well, there are 2 parts to it. Firstly creating the
+import hook. This is exploiting the new <span class="docutils literal"><span class="pre">importlib</span></span> feature for registering a
+<a class="reference external" href="https://docs.python.org/3/library/importlib.html#importlib.abc.MetaPathFinder">MetaPathFinder</a> class:</p>
+<p><script src="https://gist.github.com/lonetwin/b97e7b35634f7229773dece3735cfb58.js"></script></p>
+<p>The standard lib documentation is very detailed in explaining the <em>how</em> of this
+mechanism but if you&#8217;d like to understand the why and explore other
+reasons/benefits of being able to hook into the import mechanism you should take
+some time to read the related PEPs.</p>
+<p>The second part to this ensuring that it&#8217;s loaded into your environment. The has
+been done in the demo defining the hook above in the <a class="reference external" href="https://docs.python.org/2/using/cmdline.html#envvar-PYTHONSTARTUP">PYTHONSTARTUP</a> file.</p>
+<p>If you liked this neat little trick and are interested in other such useful
+hacks, do check out my <a class="reference external" href="https://gist.github.com/lonetwin/5902720">custom python startup</a>. Comments and suggestion are always
+appreciated.</p>
 </div>
 
     <div class="postmeta">
@@ -106,18 +91,18 @@ filename matching and md5sum matching versions of this.</td></tr>
         
         
         </div><ul class="related clearfix">
-            <li class="left"> &laquo; <a href="../../12/09/interview_cake.html">Interview Cake</a></li>
-            <li class="right"><a href="../../08/05/hello_world.html">Hello, World</a> &raquo; </li>
-        </ul><div id="disqus_thread"></div><script type="text/javascript">    var disqus_shortname = "lonetwin-gh";    var disqus_identifier = "2014/10/23/learning_complex_things_by_solving_simple_problems";    disqus_thread();</script><noscript>Please enable JavaScript to view the    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></article><aside class="sidebar"><section><div class="widget">
+            <li class="left"></li>
+            <li class="right"><a href="../../../2014/12/09/interview_cake.html">Interview Cake</a> &raquo; </li>
+        </ul><div id="disqus_thread"></div><script type="text/javascript">    var disqus_shortname = "lonetwin-gh";    var disqus_identifier = "2016/05/16/auto_install_missing_python_modules";    disqus_thread();</script><noscript>Please enable JavaScript to view the    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></article><aside class="sidebar"><section><div class="widget">
     <h1>Recent Posts</h1>
     <ul><li>
-            <a href="../../../2016/05/16/auto_install_missing_python_modules.html">Auto-install missing python modules</a>
+            <a href="#">Auto-install missing python modules</a>
         </li><li>
-            <a href="../../12/09/interview_cake.html">Interview Cake</a>
+            <a href="../../../2014/12/09/interview_cake.html">Interview Cake</a>
         </li><li>
-            <a href="#">Learning complex things by solving simple problems</a>
+            <a href="../../../2014/10/23/learning_complex_things_by_solving_simple_problems.html">Learning complex things by solving simple problems</a>
         </li><li>
-            <a href="../../08/05/hello_world.html">Hello, World</a>
+            <a href="../../../2014/08/05/hello_world.html">Hello, World</a>
         </li></ul>
 </div>
 </section><section><div class="widget" id="searchbox" role="search">

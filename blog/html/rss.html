@@ -5,8 +5,33 @@
         <link>http://lonetwin.github.io/blog/html/</link>
         <description>Thoughts on tech that lonetwin finds interesting, amusing or annoying</description>
         <language>en-us</language>
-        <pubDate>Tue, 09 Dec 2014 00:00:00 +0800</pubDate>
+        <pubDate>Mon, 16 May 2016 00:00:00 +0200</pubDate>
         
+        <item>
+            <link>http://lonetwin.github.io/blog/html/2016/05/16/auto_install_missing_python_modules.html</link>
+            <guid>http://lonetwin.github.io/blog/html/2016/05/16/auto_install_missing_python_modules.html</guid>
+            <title><![CDATA[Auto-install missing python modules]]></title>
+            <description><![CDATA[<h1>Auto-install missing python modules</h1>
+<p>I just learned about a neat little python feature introduced in python 3.3 that
+lets you hook into python’s default <span class="docutils literal"><span class="pre">import</span></span> machinery. First a demo:</p>
+<p><script type="text/javascript" src="https://asciinema.org/a/03nct06ebqxcd5tpz76m0q6pn.js" id="asciicast-03nct06ebqxcd5tpz76m0q6pn" async=""/></p>
+<p>Ok, so how’s that done ? Well, there are 2 parts to it. Firstly creating the
+import hook. This is exploiting the new <span class="docutils literal"><span class="pre">importlib</span></span> feature for registering a
+<a class="reference external" href="https://docs.python.org/3/library/importlib.html#importlib.abc.MetaPathFinder">MetaPathFinder</a> class:</p>
+<p><script src="https://gist.github.com/lonetwin/b97e7b35634f7229773dece3735cfb58.js"/></p>
+<p>The standard lib documentation is very detailed in explaining the <em>how</em> of this
+mechanism but if you’d like to understand the why and explore other
+reasons/benefits of being able to hook into the import mechanism you should take
+some time to read the related PEPs.</p>
+<p>The second part to this ensuring that it’s loaded into your environment. The has
+been done in the demo defining the hook above in the <a class="reference external" href="https://docs.python.org/2/using/cmdline.html#envvar-PYTHONSTARTUP">PYTHONSTARTUP</a> file.</p>
+<p>If you liked this neat little trick and are interested in other such useful
+hacks, do check out my <a class="reference external" href="https://gist.github.com/lonetwin/5902720">custom python startup</a>. Comments and suggestion are always
+appreciated.</p>
+]]></description>
+             <pubDate>Mon, 16 May 2016 00:00:00 +0200</pubDate>
+        </item>
+    
         <item>
             <link>http://lonetwin.github.io/blog/html/2014/12/09/interview_cake.html</link>
             <guid>http://lonetwin.github.io/blog/html/2014/12/09/interview_cake.html</guid>
@@ -49,7 +74,7 @@ great resource to wheat your appetite. I am now, stoked about ‘deep diving’
 in to <em>A&amp;DS</em> and more importantly, I feel like I can remain interested. Also, I
 feel confident that I’ll be a better programmer due to this.</p>
 ]]></description>
-             <pubDate>Tue, 09 Dec 2014 00:00:00 +0800</pubDate>
+             <pubDate>Tue, 09 Dec 2014 00:00:00 +0100</pubDate>
         </item>
     
         <item>
@@ -89,7 +114,7 @@ filename matching and md5sum matching versions of this.</td></tr>
 </tbody>
 </table>
 ]]></description>
-             <pubDate>Thu, 23 Oct 2014 00:00:00 +0800</pubDate>
+             <pubDate>Thu, 23 Oct 2014 00:00:00 +0200</pubDate>
         </item>
     
         <item>
@@ -107,7 +132,7 @@ thought provoking, deeper (iow, navel gazing)</em> posts o’re there.</p>
 to <a class="reference external" href="http://tinkerer.me">Tinkerer</a>, I now have this !</p>
 <p>Let’s see where I go with it !</p>
 ]]></description>
-             <pubDate>Tue, 05 Aug 2014 00:00:00 +0800</pubDate>
+             <pubDate>Tue, 05 Aug 2014 00:00:00 +0200</pubDate>
         </item>
     
     </channel>
