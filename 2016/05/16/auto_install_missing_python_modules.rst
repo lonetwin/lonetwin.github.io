@@ -34,7 +34,8 @@ appreciated.
 
 .. |demo| raw:: html
 
-    <script type="text/javascript" src="https://asciinema.org/a/03nct06ebqxcd5tpz76m0q6pn.js" id="asciicast-03nct06ebqxcd5tpz76m0q6pn" async></script>
+    <script type="text/javascript" src="https://asciinema.org/a/c7ijc2luvvqksxcn69dip0g92.js" id="asciicast-c7ijc2luvvqksxcn69dip0g92" async></script>
+
 .. |implemetation| raw:: html
 
     <script src="https://gist.github.com/lonetwin/b97e7b35634f7229773dece3735cfb58.js"></script>
