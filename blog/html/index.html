@@ -31,7 +31,7 @@
         <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.html" /><script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.4.2',
+        VERSION:     '1.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -61,10 +61,84 @@
                   <a href="#">Home</a>
                 </li>
               </ul>
-          </nav><div class="main-container" role="main"><div class="main wrapper clearfix"><article><div class="timestamp postmeta">
+          </nav><div class="main-container" role="main"><div class="main wrapper body clearfix"><article><div class="timestamp postmeta">
+            <span>July 01, 2016</span>
+        </div>
+        <div class="section">
+            <h1><a href="2016/07/01/code_reviews_instead_of_whiteboard_for_interviews.html">Code reviews instead of whiteboard for interviews</a></h1>
+<p>Of late I’ve been thinking a lot about interviews. After being part of this
+community (or industry if you fancy it) for more than 15 years, I’ve had my
+share of sitting on both sides of the table. A lot has changed in all these
+years with the tools we work with as well as the way we approach problems.</p>
+<p>However, in all these years not a whole lot has changed in the way we interview
+(or approach interviewing). Sure, we have better tools and have questioned
+ourselves about the methodology but at some point we all end up defaulting to
+focusing on the candidates ability to write good code. This ability though is
+just a small part of how we work on a daily basis.</p>
+<p>The other day I was reviewing a colleague’s patchset and although the code by
+itself was clean and functional, it was the approach that my colleague had
+taken which bothered me a bit. So I made my comments and submitted a -1 on the
+patchset. As is customary when it is easier to just speak about it than reply
+thru’ the tool (we use gerrit), my colleague walked over to my desk and we
+spent a good half hour or so discussing the approach. That’s when I got to
+wondering why don’t we just do more of this during interviews.</p>
+<ul class="simple">
+<li>We can quickly weed out people who can’t write code just by testing their
+ability to comprehend code. If they can’t recognize well known datastuctures
+or algorithms by looking at the code, they probably won’t be able to write it
+either.</li>
+<li>Hearing someone review some piece of code gives invaluable insight into just
+how they think. The colleague I mentioned earlier was new to the company and
+among other things that we spoke about, we seemed to disagree on whether or
+not it is a good idea to introduce new <em>patterns/paradigms</em> into existing
+codebase. I am of the opinion that code should appear as though written by a
+single author even if it has been worked on by different people. His was that
+introducing newer patterns improves the quality of the code. While I agreed to
+an extent with him, I would vote against this if it violates the principle of
+least surprise <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</li>
+<li>Hearing someone review some piece of code gives invaluable insight into
+aspects of their personality. Like for instance their sense of ‘code smell’,
+their attitude or towards performance trade-offs in a very real practical
+sense, their ability (/experience) in spotting subtle bugs and just as
+importantly the manner in which they express their opinions.</li>
+<li>You end up treating the candidates as peers instead of making them feel
+<em>uneasy</em> or <em>defensive</em> by asking questions they probably could answer when
+they had just graduated.</li>
+</ul>
+<p>So, with these in mind, I am thinking about a scenario where we could possibly
+use some of our more accessible (isolated) code snapshots which have under gone
+several revisions during interviews. It might be interesting to see whether we
+can get the same comments as the rest of the team had made.</p>
+<p>Of course, what I’m advocating is not to do away with approaches that judge
+coding ability but to take a more practical/mature approach to interviewing
+your peer.</p>
+<p>I’m very interested in hearing whether anyone has tried this at their workplace
+and what other everyday aspects of work do you suppose we can and should
+incorporate into our interviewing process ?</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label"/><col/></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Yeah, I know that this apply to UI rather than code, but IMHO, one ought
+to consider fellow developers as <em>users</em> of ones code.</td></tr>
+</tbody>
+</table>
+<p><em>Note</em>: This originally was written as a quick <a class="reference external" href="https://medium.com/@lonetwin/code-reviews-instead-of-whiteboard-for-interviews-e0b66f8db71b#.ifyy5otso">medium post</a> with comments
+requested at <a class="reference external" href="https://news.ycombinator.com/item?id=12018965">Hacker News</a></p>
+
+        </div>
+        <div class="postmeta">
+        <div class="author">
+            <span>Posted by lonetwin</span>
+        </div>
+        
+        
+        <div class="comments">
+            <a href="http://lonetwin.github.io/blog/html/2016/07/01/code_reviews_instead_of_whiteboard_for_interviews.html#disqus_thread" data-disqus-identifier="2016/07/01/code_reviews_instead_of_whiteboard_for_interviews">Leave a comment</a>
+        </div></div><div class="separator post_separator"></div><div class="timestamp postmeta">
             <span>May 16, 2016</span>
         </div>
-        <h1><a href="2016/05/16/auto_install_missing_python_modules.html">Auto-install missing python modules</a></h1>
+        <div class="section">
+            <h1><a href="2016/05/16/auto_install_missing_python_modules.html">Auto-install missing python modules</a></h1>
 <p>I just learned about a neat little python feature introduced in python 3.3 that
 lets you hook into python’s default <span class="docutils literal"><span class="pre">import</span></span> machinery. First a demo:</p>
 <p><script type="text/javascript" src="https://asciinema.org/a/c7ijc2luvvqksxcn69dip0g92.js" id="asciicast-c7ijc2luvvqksxcn69dip0g92" async=""/></p>
@@ -82,6 +156,7 @@ been done in the demo defining the hook above in the <a class="reference externa
 hacks, do check out my <a class="reference external" href="https://gist.github.com/lonetwin/5902720">custom python startup</a>. Comments and suggestion are always
 appreciated.</p>
 
+        </div>
         <div class="postmeta">
         <div class="author">
             <span>Posted by lonetwin</span>
@@ -93,8 +168,9 @@ appreciated.</p>
         </div></div><div class="separator post_separator"></div><div class="timestamp postmeta">
             <span>December 09, 2014</span>
         </div>
-        <h1><a href="2014/12/09/interview_cake.html">Interview Cake</a></h1>
-<p>A while ago I discovered <a class="reference external" href="https://www.interviewcake.com">Interview Cake</a> via a <a class="reference external" href="https://news.ycombinator.com/item?id=7477095">Hacker News</a> post and I’m so
+        <div class="section">
+            <h1><a href="2014/12/09/interview_cake.html">Interview Cake</a></h1>
+<p>A while ago I discovered <a class="reference external" href="https://www.interviewcake.com/">Interview Cake</a> via a <a class="reference external" href="https://news.ycombinator.com/item?id=7477095">Hacker News</a> post and I’m so
 glad to have found it.</p>
 <p>I recommend it to anyone who feels like they are at a disadvantage as
 programmers because somehow, along the way, they skipped having to learn
@@ -118,9 +194,9 @@ like to think I am) a pragmatic programmer who wants to solve interesting
 problems using the tools at hand.</p>
 <p>So, although a formal study of the complexity of algorithms made for
 interesting bedside reading, it never stuck and I’d soon get bored.</p>
-<p>Until I saw <a class="reference external" href="https://www.interviewcake.com">Interview Cake</a> that is. This site presents problems (typically
+<p>Until I saw <a class="reference external" href="https://www.interviewcake.com/">Interview Cake</a> that is. This site presents problems (typically
 the kind that you’d face during the technical rounds of an interview for a
-developer position) – but it isn’t just another <a class="reference external" href="https://codility.com">codility</a> or <a class="reference external" href="https://projecteuler.net">project
+developer position) – but it isn’t just another <a class="reference external" href="https://codility.com/">codility</a> or <a class="reference external" href="https://projecteuler.net/">project
 euler</a>, there is a definite sense of purpose to the way the problems are
 presented, broken down, hints offered and solutions explained.</p>
 <p>It makes you <strong>want</strong> to learn the concepts if you don’t already know the
@@ -131,6 +207,7 @@ great resource to wheat your appetite. I am now, stoked about ‘deep diving’
 in to <em>A&amp;DS</em> and more importantly, I feel like I can remain interested. Also, I
 feel confident that I’ll be a better programmer due to this.</p>
 
+        </div>
         <div class="postmeta">
         <div class="author">
             <span>Posted by lonetwin</span>
@@ -142,7 +219,8 @@ feel confident that I’ll be a better programmer due to this.</p>
         </div></div><div class="separator post_separator"></div><div class="timestamp postmeta">
             <span>October 23, 2014</span>
         </div>
-        <h1><a href="2014/10/23/learning_complex_things_by_solving_simple_problems.html">Learning complex things by solving simple problems</a></h1>
+        <div class="section">
+            <h1><a href="2014/10/23/learning_complex_things_by_solving_simple_problems.html">Learning complex things by solving simple problems</a></h1>
 <p>Keeping things organized is not one of my strengths and this is evident by
 looking at the filesystems on any of the myriad storage devices in my
 possession.</p>
@@ -175,6 +253,7 @@ filename matching and md5sum matching versions of this.</td></tr>
 </tbody>
 </table>
 
+        </div>
         <div class="postmeta">
         <div class="author">
             <span>Posted by lonetwin</span>
@@ -186,17 +265,19 @@ filename matching and md5sum matching versions of this.</td></tr>
         </div></div><div class="separator post_separator"></div><div class="timestamp postmeta">
             <span>August 05, 2014</span>
         </div>
-        <h1><a href="2014/08/05/hello_world.html">Hello, World</a></h1>
-<p>Although I’ve had the site <a class="reference external" href="http://lonetwin.net">http://lonetwin.net/</a> for a while now, where I
+        <div class="section">
+            <h1><a href="2014/08/05/hello_world.html">Hello, World</a></h1>
+<p>Although I’ve had the site <a class="reference external" href="http://lonetwin.net/">http://lonetwin.net/</a> for a while now, where I
 occasionally (rarely, in fact) blog, I thought of maintaining a relatively more
 active tech blog which would be different from my usual ranting and gyaan giving
 at lonetwin.net. Different in the sense that, although I might just rant and
 give gyaan, it would be more tech related and banal in comparison to <em>serious,
 thought provoking, deeper (iow, navel gazing)</em> posts o’re there.</p>
 <p>Thanks to the graciousness of <a class="reference external" href="https://github.com/vladris">Vlad Riscutia</a> and various other contributors
-to <a class="reference external" href="http://tinkerer.me">Tinkerer</a>, I now have this !</p>
+to <a class="reference external" href="http://tinkerer.me/">Tinkerer</a>, I now have this !</p>
 <p>Let’s see where I go with it !</p>
 
+        </div>
         <div class="postmeta">
         <div class="author">
             <span>Posted by lonetwin</span>
@@ -210,6 +291,8 @@ to <a class="reference external" href="http://tinkerer.me">Tinkerer</a>, I now h
     </div></article><aside class="sidebar"><section><div class="widget">
     <h1>Recent Posts</h1>
     <ul><li>
+            <a href="2016/07/01/code_reviews_instead_of_whiteboard_for_interviews.html">Code reviews instead of whiteboard for interviews</a>
+        </li><li>
             <a href="2016/05/16/auto_install_missing_python_modules.html">Auto-install missing python modules</a>
         </li><li>
             <a href="2014/12/09/interview_cake.html">Interview Cake</a>
@@ -220,7 +303,7 @@ to <a class="reference external" href="http://tinkerer.me">Tinkerer</a>, I now h
         </li></ul>
 </div>
 </section><section><div class="widget" id="searchbox" role="search">
-    <h1>Search</h1>
+    <h1><a href="#searchbox">Search</a></h1>
     <form action="search.html" method="get">
         <input type="text" name="q" />
         <button type="submit"><span class="fa fa-search"></span></button>
