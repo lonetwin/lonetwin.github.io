@@ -72,5 +72,5 @@ requested at `Hacker News`_
 
 .. author:: default
 .. categories:: none
-.. tags:: none
+.. tags:: interviews
 .. comments::

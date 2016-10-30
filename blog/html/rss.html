@@ -158,12 +158,12 @@ requested at <a class="reference external" href="https://news.ycombinator.com/it
             <description><![CDATA[<h1>Auto-install missing python modules</h1>
 <p>I just learned about a neat little python feature introduced in python 3.3 that
 lets you hook into python’s default <span class="docutils literal"><span class="pre">import</span></span> machinery. First a demo:</p>
-<p><script type="text/javascript" src="https://asciinema.org/a/c7ijc2luvvqksxcn69dip0g92.js" id="asciicast-c7ijc2luvvqksxcn69dip0g92" async=""/></p>
-<p>Ok, so how’s that done ? Well, there are 2 parts to it. Firstly creating the
+<script type="text/javascript" src="https://asciinema.org/a/c7ijc2luvvqksxcn69dip0g92.js" id="asciicast-c7ijc2luvvqksxcn69dip0g92" async="">
+</script><p>Ok, so how’s that done ? Well, there are 2 parts to it. Firstly creating the
 import hook. This is exploiting the new <span class="docutils literal"><span class="pre">importlib</span></span> feature for registering a
 <a class="reference external" href="https://docs.python.org/3/library/importlib.html#importlib.abc.MetaPathFinder">MetaPathFinder</a> class:</p>
-<p><script src="https://gist.github.com/lonetwin/b97e7b35634f7229773dece3735cfb58.js"/></p>
-<p>The standard lib documentation is very detailed in explaining the <em>how</em> of this
+<script src="https://gist.github.com/lonetwin/b97e7b35634f7229773dece3735cfb58.js">
+</script><p>The standard lib documentation is very detailed in explaining the <em>how</em> of this
 mechanism but if you’d like to understand the why and explore other
 reasons/benefits of being able to hook into the import mechanism you should take
 some time to read the related PEPs.</p>
@@ -173,6 +173,7 @@ been done in the demo defining the hook above in the <a class="reference externa
 hacks, do check out my <a class="reference external" href="https://gist.github.com/lonetwin/5902720">custom python startup</a>. Comments and suggestion are always
 appreciated.</p>
 ]]></description>
+            <category><![CDATA[ python ]]></category>
              <pubDate>Mon, 16 May 2016 00:00:00 +0200</pubDate>
         </item>
     

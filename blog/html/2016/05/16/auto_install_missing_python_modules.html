@@ -68,12 +68,12 @@
 <h1>Auto-install missing python modules</h1>
 <p>I just learned about a neat little python feature introduced in python 3.3 that
 lets you hook into python&#8217;s default <span class="docutils literal"><span class="pre">import</span></span> machinery. First a demo:</p>
-<p><script type="text/javascript" src="https://asciinema.org/a/c7ijc2luvvqksxcn69dip0g92.js" id="asciicast-c7ijc2luvvqksxcn69dip0g92" async></script></p>
-<p>Ok, so how&#8217;s that done ? Well, there are 2 parts to it. Firstly creating the
+<script type="text/javascript" src="https://asciinema.org/a/c7ijc2luvvqksxcn69dip0g92.js" id="asciicast-c7ijc2luvvqksxcn69dip0g92" async>
+</script><p>Ok, so how&#8217;s that done ? Well, there are 2 parts to it. Firstly creating the
 import hook. This is exploiting the new <span class="docutils literal"><span class="pre">importlib</span></span> feature for registering a
 <a class="reference external" href="https://docs.python.org/3/library/importlib.html#importlib.abc.MetaPathFinder">MetaPathFinder</a> class:</p>
-<p><script src="https://gist.github.com/lonetwin/b97e7b35634f7229773dece3735cfb58.js"></script></p>
-<p>The standard lib documentation is very detailed in explaining the <em>how</em> of this
+<script src="https://gist.github.com/lonetwin/b97e7b35634f7229773dece3735cfb58.js">
+</script><p>The standard lib documentation is very detailed in explaining the <em>how</em> of this
 mechanism but if you&#8217;d like to understand the why and explore other
 reasons/benefits of being able to hook into the import mechanism you should take
 some time to read the related PEPs.</p>
@@ -88,8 +88,16 @@ appreciated.</p>
         <div class="author">
             <span>Posted by lonetwin</span>
         </div>
-        
-        
+        <div class="categories">
+            <span>
+                Filed under:
+                <a href="../../../categories/python.html">python</a></span>
+        </div>
+        <div class="tags">
+            <span>
+                Tags:
+                <a href="../../../tags/pip.html">pip</a>, <a href="../../../tags/hacks.html">hacks</a></span>
+        </div>
         </div><ul class="related clearfix">
             <li class="left"> &laquo; <a href="../../07/01/code_reviews_instead_of_whiteboard_for_interviews.html">Code reviews instead of whiteboard for interviews</a></li>
             <li class="right"><a href="../../../2014/12/09/interview_cake.html">Interview Cake</a> &raquo; </li>
