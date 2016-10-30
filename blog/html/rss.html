@@ -5,8 +5,85 @@
         <link>http://lonetwin.github.io/blog/html/</link>
         <description>Thoughts on tech that lonetwin finds interesting, amusing or annoying</description>
         <language>en-us</language>
-        <pubDate>Fri, 01 Jul 2016 00:00:00 +0200</pubDate>
+        <pubDate>Sun, 30 Oct 2016 00:00:00 +0200</pubDate>
         
+        <item>
+            <link>http://lonetwin.github.io/blog/html/2016/10/30/working_with_multiple_python_packages_in_editable_mode.html</link>
+            <guid>http://lonetwin.github.io/blog/html/2016/10/30/working_with_multiple_python_packages_in_editable_mode.html</guid>
+            <title><![CDATA[Working with multiple python packages in "editable" mode]]></title>
+            <description><![CDATA[<h1>Working with multiple python packages in “editable” mode</h1>
+<p>Like a lot of pythonistas, I prefer doing my python development in <a class="reference external" href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">virtual
+environments</a>. Furthermore, I prefer <a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/index.html">virtualenvwrapper</a> to manage my virtual
+environments. This ensures isolation of the environment and the packages that
+the project depends upon and this works extremely well for self contained
+projects.</p>
+<p>Once in the while though, I need to create a dependency to a package that is
+being worked on in a different virtualenv. In other words, I need to
+simultaneously work in <em>editable</em> mode on 2 different packages from 2 different
+virtualenvs.</p>
+<p>One of the ways to do this <em>cleanly</em> is to <span class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></span> the dependency into
+your virtualenv. However, each time you update the code for the dependency
+package, you also need to <span class="docutils literal"><span class="pre">pip</span> <span class="pre">upgrade</span></span> the package in your virtualenv. This
+becomes a pain if your dependency is a library that is shared across more than
+one virtualenv.</p>
+<p>The other way to solve this is to also install the dependency in an <em>editable</em>
+mode, using <span class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span></span>. However, with this approach again, you might end
+up having to constantly keep the source repo for the dependency package synced
+across all the virtualenvs that use it.</p>
+<p>In both cases, you have multiple copies of the dependency lying around in your
+virtualenvs. How do you optimize this so that:</p>
+<ol class="loweralpha simple">
+<li>There is just one copy of the dependency package.</li>
+<li>All virtualenvs get the latest changes in the dependency package without
+having to do anything special.</li>
+<li>Does not interfere or break the isolation of the virtualenv setup (ie: both,
+the dependency package and the dependent package are still in their own
+virtualenv)</li>
+</ol>
+<p>A good clean way I recently discovered is using <a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html#add2virtualenv">add2virtualenv</a></p>
+<p>Perhaps a session capture is much better to explain this than loads of
+descriptive text:</p>
+<div class="highlight-default"><div class="highlight"><pre><span/>[steve@lonelap ~]$ mkvirtualenv dependency
+New python executable in dependency/bin/python2
+Also creating executable in dependency/bin/python
+Installing setuptools, pip...done.
+[steve@lonelap (dependency)]$ echo 'print("Everyone needs me")' &gt; dependency.py
+[steve@lonelap (dependency)]$ deactivate
+
+[steve@lonelap ~]$ mkvirtualenv project
+New python executable in project/bin/python2
+Also creating executable in project/bin/python
+Installing setuptools, pip...done.
+[steve@lonelap (project)]$ echo "import dependency" &gt; my_project.py
+[steve@lonelap (project)]$ echo "print('I am using dependency from %s' % dependency.__file__)" &gt;&gt; my_project.py
+[steve@lonelap (project)]$ python my_project.py
+Traceback (most recent call last):
+  File "my_project.py", line 1, in &lt;module&gt;
+    import dependency
+ImportError: No module named dependency
+[steve@lonelap (project)]$ add2virtualenv ~/src/venvs/dependency
+[steve@lonelap (project)]$ python my_project.py
+Everyone needs me
+I am using dependency from /home/steve/src/venvs/dependency/dependency.pyc
+[steve@lonelap (project)]$ deactivate
+
+[steve@lonelap ~]$ workon dependency
+[steve@lonelap (dependency)]$ echo "print('Dependency is now updated')" &gt;&gt; dependency.py
+[steve@lonelap (dependency)]$ deactivate
+
+[steve@lonelap ~]$ workon project
+[steve@lonelap (project)]$ python my_project.py
+Everyone needs me
+Dependency is now updated
+I am using dependency from /home/steve/src/venvs/dependency/dependency.py
+[steve@lonelap (project)]$
+</pre></div>
+</div>
+]]></description>
+            <category><![CDATA[ python ]]></category>
+             <pubDate>Sun, 30 Oct 2016 00:00:00 +0200</pubDate>
+        </item>
+    
         <item>
             <link>http://lonetwin.github.io/blog/html/2016/07/01/code_reviews_instead_of_whiteboard_for_interviews.html</link>
             <guid>http://lonetwin.github.io/blog/html/2016/07/01/code_reviews_instead_of_whiteboard_for_interviews.html</guid>

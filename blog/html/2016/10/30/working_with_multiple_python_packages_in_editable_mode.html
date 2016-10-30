@@ -1,0 +1,186 @@
+<!DOCTYPE html><!--[if lt IE 7]>      <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="Thoughts on tech that lonetwin finds interesting, amusing or annoying">
+        <meta name="viewport" content="width=device-width">
+        <title>Working with multiple python packages in “editable” mode &mdash; lonetwin&#39;s garage</title>
+            <link rel="stylesheet" href="../../../_static/normalize.css" type="text/css">
+            <link rel="stylesheet" href="../../../_static/sphinx.css" type="text/css">
+            <link rel="stylesheet" href="../../../_static/main.css" type="text/css">
+            <link rel="stylesheet" href="../../../_static/flat.css" type="text/css">
+            <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+            <link rel="stylesheet" href="../../../_static/font-awesome.min.css" type="text/css">
+        <link rel="shortcut icon" href="../../../_static/tinkerer.ico" /><!-- Load modernizr and JQuery -->
+        <script src="../../../_static/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../../_static/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+        <script src="../../../_static/plugins.js"></script>
+        <script src="../../../_static/main.js"></script>
+        <link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Code reviews instead of whiteboard for interviews" href="../../07/01/code_reviews_instead_of_whiteboard_for_interviews.html" /><link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.html" /><script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script><script type="text/javascript" src="../../../_static/underscore.js"></script><script type="text/javascript" src="../../../_static/doctools.js"></script><script type="text/javascript" src="../../../_static/disqus.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Scroll to content if on small screen
+            if (screen.width < 480)
+            {
+                $(document).scrollTop(document.getElementsByTagName("article")[0].offsetTop - 44);
+            }
+        });
+    </script></head>
+    <body role="document">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+      <div id="container"><header role="banner">
+            <hgroup>
+              <h1><a href="../../../index.html">lonetwin&#39;s garage</a></h1><h2>Thoughts on tech that lonetwin finds interesting, amusing or annoying</h2></hgroup>
+          </header>
+      <nav role="navigation">
+            <ul><li class="main-nav">
+                  <a href="../../../index.html">Home</a>
+                </li>
+              </ul>
+          </nav><div class="main-container" role="main"><div class="main wrapper body clearfix"><article><div class="timestamp postmeta">
+            <span>October 30, 2016</span>
+        </div>
+    <div class="section" id="working-with-multiple-python-packages-in-editable-mode">
+<h1>Working with multiple python packages in &#8220;editable&#8221; mode</h1>
+<p>Like a lot of pythonistas, I prefer doing my python development in <a class="reference external" href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">virtual
+environments</a>. Furthermore, I prefer <a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/index.html">virtualenvwrapper</a> to manage my virtual
+environments. This ensures isolation of the environment and the packages that
+the project depends upon and this works extremely well for self contained
+projects.</p>
+<p>Once in the while though, I need to create a dependency to a package that is
+being worked on in a different virtualenv. In other words, I need to
+simultaneously work in <em>editable</em> mode on 2 different packages from 2 different
+virtualenvs.</p>
+<p>One of the ways to do this <em>cleanly</em> is to <span class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></span> the dependency into
+your virtualenv. However, each time you update the code for the dependency
+package, you also need to <span class="docutils literal"><span class="pre">pip</span> <span class="pre">upgrade</span></span> the package in your virtualenv. This
+becomes a pain if your dependency is a library that is shared across more than
+one virtualenv.</p>
+<p>The other way to solve this is to also install the dependency in an <em>editable</em>
+mode, using <span class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span></span>. However, with this approach again, you might end
+up having to constantly keep the source repo for the dependency package synced
+across all the virtualenvs that use it.</p>
+<p>In both cases, you have multiple copies of the dependency lying around in your
+virtualenvs. How do you optimize this so that:</p>
+<ol class="loweralpha simple">
+<li>There is just one copy of the dependency package.</li>
+<li>All virtualenvs get the latest changes in the dependency package without
+having to do anything special.</li>
+<li>Does not interfere or break the isolation of the virtualenv setup (ie: both,
+the dependency package and the dependent package are still in their own
+virtualenv)</li>
+</ol>
+<p>A good clean way I recently discovered is using <a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html#add2virtualenv">add2virtualenv</a></p>
+<p>Perhaps a session capture is much better to explain this than loads of
+descriptive text:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>[steve@lonelap ~]$ mkvirtualenv dependency
+New python executable in dependency/bin/python2
+Also creating executable in dependency/bin/python
+Installing setuptools, pip...done.
+[steve@lonelap (dependency)]$ echo &#39;print(&quot;Everyone needs me&quot;)&#39; &gt; dependency.py
+[steve@lonelap (dependency)]$ deactivate
+
+[steve@lonelap ~]$ mkvirtualenv project
+New python executable in project/bin/python2
+Also creating executable in project/bin/python
+Installing setuptools, pip...done.
+[steve@lonelap (project)]$ echo &quot;import dependency&quot; &gt; my_project.py
+[steve@lonelap (project)]$ echo &quot;print(&#39;I am using dependency from %s&#39; % dependency.__file__)&quot; &gt;&gt; my_project.py
+[steve@lonelap (project)]$ python my_project.py
+Traceback (most recent call last):
+  File &quot;my_project.py&quot;, line 1, in &lt;module&gt;
+    import dependency
+ImportError: No module named dependency
+[steve@lonelap (project)]$ add2virtualenv ~/src/venvs/dependency
+[steve@lonelap (project)]$ python my_project.py
+Everyone needs me
+I am using dependency from /home/steve/src/venvs/dependency/dependency.pyc
+[steve@lonelap (project)]$ deactivate
+
+[steve@lonelap ~]$ workon dependency
+[steve@lonelap (dependency)]$ echo &quot;print(&#39;Dependency is now updated&#39;)&quot; &gt;&gt; dependency.py
+[steve@lonelap (dependency)]$ deactivate
+
+[steve@lonelap ~]$ workon project
+[steve@lonelap (project)]$ python my_project.py
+Everyone needs me
+Dependency is now updated
+I am using dependency from /home/steve/src/venvs/dependency/dependency.py
+[steve@lonelap (project)]$
+</pre></div>
+</div>
+</div>
+
+    <div class="postmeta">
+        <div class="author">
+            <span>Posted by lonetwin</span>
+        </div>
+        <div class="categories">
+            <span>
+                Filed under:
+                <a href="../../../categories/python.html">python</a></span>
+        </div>
+        <div class="tags">
+            <span>
+                Tags:
+                <a href="../../../tags/pip.html">pip</a>, <a href="../../../tags/virtualenvwrapper.html">virtualenvwrapper</a></span>
+        </div>
+        </div><ul class="related clearfix">
+            <li class="left"></li>
+            <li class="right"><a href="../../07/01/code_reviews_instead_of_whiteboard_for_interviews.html">Code reviews instead of whiteboard for interviews</a> &raquo; </li>
+        </ul><div id="disqus_thread"></div><script type="text/javascript">    var disqus_shortname = "lonetwin-gh";    var disqus_identifier = "2016/10/30/working_with_multiple_python_packages_in_editable_mode";    disqus_thread();</script><noscript>Please enable JavaScript to view the    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></article><aside class="sidebar"><section><div class="widget">
+    <h1>Recent Posts</h1>
+    <ul><li>
+            <a href="#">Working with multiple python packages in "editable" mode</a>
+        </li><li>
+            <a href="../../07/01/code_reviews_instead_of_whiteboard_for_interviews.html">Code reviews instead of whiteboard for interviews</a>
+        </li><li>
+            <a href="../../05/16/auto_install_missing_python_modules.html">Auto-install missing python modules</a>
+        </li><li>
+            <a href="../../../2014/12/09/interview_cake.html">Interview Cake</a>
+        </li><li>
+            <a href="../../../2014/10/23/learning_complex_things_by_solving_simple_problems.html">Learning complex things by solving simple problems</a>
+        </li><li>
+            <a href="../../../2014/08/05/hello_world.html">Hello, World</a>
+        </li></ul>
+</div>
+</section><section><div class="widget" id="searchbox" role="search">
+    <h1><a href="#searchbox">Search</a></h1>
+    <form action="../../../search.html" method="get">
+        <input type="text" name="q" />
+        <button type="submit"><span class="fa fa-search"></span></button>
+    </form>
+</div></section></aside></div> <!-- #main --></div> <!-- #main-container -->
+
+        <div class="footer-container" role="contentinfo"><footer class="wrapper">&copy; Copyright 2014, lonetwin. Powered by <a href="http://www.tinkerer.me/">Tinkerer</a> and <a href="http://sphinx.pocoo.org/">Sphinx</a>.</footer></div> <!-- footer-container -->
+
+      </div> <!--! end of #container --><!--[if lt IE 7 ]>
+          <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+          <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+        <![endif]-->
+    </body>
+</html>

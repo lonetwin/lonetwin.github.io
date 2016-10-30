@@ -4,6 +4,7 @@ Sitemap
 .. toctree::
    :maxdepth: 1
 
+   2016/10/30/working_with_multiple_python_packages_in_editable_mode
    2016/07/01/code_reviews_instead_of_whiteboard_for_interviews
    2016/05/16/auto_install_missing_python_modules
    2014/12/09/interview_cake
