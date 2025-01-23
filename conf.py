@@ -20,7 +20,7 @@ description = "Thoughts on tech that lonetwin finds interesting, amusing or anno
 author = 'lonetwin'
 
 # Change this to your copyright string
-copyright = '2014, ' + author
+copyright = '2025, ' + author
 
 # Change this to your blog root URL (required for RSS feed)
 website = 'http://lonetwin.github.io/blog/html/'
